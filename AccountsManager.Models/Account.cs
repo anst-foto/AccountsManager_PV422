@@ -1,6 +1,8 @@
 ﻿namespace AccountsManager.Models;
 
-public class Account
+
+//public record class Account
+public partial class Account
 {
     public int Id { get; set; }
     public string LastName { get; set; }

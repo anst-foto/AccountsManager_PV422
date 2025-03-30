@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsManager.Desktop", "AccountsManager.Desktop\AccountsManager.Desktop.csproj", "{727C5D39-35D4-4AB6-AAE1-7F4A7121091C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{A59D503F-947A-432A-9B66-BD54E25394F1}"
@@ -11,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsManager.Models", "AccountsManager.Models\AccountsManager.Models.csproj", "{A2B7E459-AE88-41A5-B997-C689A73553E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsManager.Core", "AccountsManager.Core\AccountsManager.Core.csproj", "{2888CB59-B3FE-4AAD-9E18-18FCCF763E13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsManager.Core.Test", "AccountsManager.Core.Test\AccountsManager.Core.Test.csproj", "{DE8781BE-0887-4805-A8CE-B1CD666C6AC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,12 @@ Global
 		{2888CB59-B3FE-4AAD-9E18-18FCCF763E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2888CB59-B3FE-4AAD-9E18-18FCCF763E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2888CB59-B3FE-4AAD-9E18-18FCCF763E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8781BE-0887-4805-A8CE-B1CD666C6AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8781BE-0887-4805-A8CE-B1CD666C6AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8781BE-0887-4805-A8CE-B1CD666C6AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8781BE-0887-4805-A8CE-B1CD666C6AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

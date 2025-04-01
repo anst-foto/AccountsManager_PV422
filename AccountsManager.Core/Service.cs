@@ -1,5 +1,5 @@
-﻿using System.Data;
-using AccountsManager.Models;
+﻿using AccountsManager.Models;
+using Dapper;
 using Npgsql;
 
 namespace AccountsManager.Core;
@@ -21,6 +21,8 @@ public class Service
             throw new ArgumentNullException(nameof(connectionString));
         
         _connectionString = connectionString;
+        
+        Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
     }
 
     /// <summary>
@@ -36,13 +38,14 @@ public class Service
                            INSERT INTO table_accounts(last_name, first_name, login, password) 
                            VALUES(@LastName, @FirstName, @Login, @Password)
                            """;
-        var command = new NpgsqlCommand(SQL, db);
-        command.Parameters.AddWithValue("@LastName", account.LastName);
-        command.Parameters.AddWithValue("@FirstName", account.FirstName);
-        command.Parameters.AddWithValue("@Login", account.Login);
-        command.Parameters.AddWithValue("@Password", account.Password);
         
-        var result = command.ExecuteNonQuery();
+        var result = db.Execute(SQL, new
+        {
+            LastName = account.LastName, 
+            FirstName = account.FirstName, 
+            Login = account.Login, 
+            Password = account.Password
+        });
         db.Close();
         
         return result > 0;
@@ -58,23 +61,7 @@ public class Service
         using var db = new NpgsqlConnection(_connectionString);
         db.Open();
         const string SQL = "SELECT id, last_name, first_name, login, password FROM table_accounts";
-        var command = new NpgsqlCommand(SQL, db);
-        var reader = command.ExecuteReader();
-        
-        if (!reader.HasRows) throw new EmptyTableException();
-
-        var accounts = new List<Account>();
-        while (reader.Read())
-        {
-            accounts.Add(new Account()
-            {
-                Id = reader.GetInt32("id"),
-                LastName = reader.GetString("last_name"),
-                FirstName = reader.GetString("first_name"),
-                Login = reader.GetString("login"),
-                Password = reader.GetString("password")
-            });
-        }
+        var accounts = db.Query<Account>(SQL);
         
         db.Close();
         

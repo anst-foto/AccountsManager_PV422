@@ -4,10 +4,18 @@ namespace AccountsManager.Core.Test
 {
     public class ServiceTest
     {
+        private const string PATH = "db_config.json";
+        private readonly string _connectionString;
+
+        public ServiceTest()
+        {
+            _connectionString = DbConfig.GetConnectionString(PATH);
+        }
+
         [Fact]
         public void AddAccountTest()
         {
-            var service = new Service();
+            var service = new Service(_connectionString);
             var result = service.AddAccount(new Account()
             {
                 LastName = "Starinin",
@@ -16,7 +24,6 @@ namespace AccountsManager.Core.Test
                 Password = "123"
             });
             
-            //Assert.Equal(result, true);
             Assert.True(result);
         }
 
@@ -35,7 +42,7 @@ namespace AccountsManager.Core.Test
                 }
             };
             
-            var service = new Service();
+            var service = new Service(_connectionString);
             var actual = service.GetAllAccounts();
             
             Assert.Equal(expected, actual);

@@ -22,4 +22,10 @@
     <ProjectReference Include="..\AccountsManager.Core\AccountsManager.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="db_config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

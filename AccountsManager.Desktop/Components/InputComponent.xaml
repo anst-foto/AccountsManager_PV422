@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="AccountsManager.Desktop.Components.InputComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Component">
+    <UserControl.Resources>
+        <ResourceDictionary Source="InputComponentStyles.xaml"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Target="{Binding ElementName=Input}"
+               Content="{Binding ElementName=Component, Path=LabelContent, Mode=OneWay}"
+               Style="{StaticResource LabelStyle}"
+               Grid.Column="0"/>
+        <TextBox x:Name="Input"
+                 Text="{Binding ElementName=Component, Path=InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 IsReadOnly="{Binding ElementName=Component, Path=IsReadOnly, Mode=OneWay}"
+                 Style="{StaticResource TextBoxStyle}"
+                 Grid.Column="1"/>
+    </Grid>
+</UserControl>

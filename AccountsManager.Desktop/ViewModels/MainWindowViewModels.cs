@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using AccountsManager.Core;
 using AccountsManager.Models;
+using ReactiveUI;
 
 namespace AccountsManager.Desktop.ViewModels;
 
@@ -10,35 +11,35 @@ public class MainWindowViewModels : ViewModelBase
     public int? Id
     {
         get => _id;
-        set => SetField(ref _id, value);
+        set => this.RaiseAndSetIfChanged(ref _id, value);
     }
     
     private string? _firstName;
     public string? FirstName
     {
         get => _firstName;
-        set => SetField(ref _firstName, value);
+        set => this.RaiseAndSetIfChanged(ref _firstName, value);
     }
     
     private string? _lastName;
     public string? LastName
     {
         get => _lastName;
-        set => SetField(ref _lastName, value);
+        set => this.RaiseAndSetIfChanged(ref _lastName, value);
     }
     
     private string? _login;
     public string? Login
     {
         get => _login;
-        set => SetField(ref _login, value);
+        set => this.RaiseAndSetIfChanged(ref _login, value);
     }
     
     private string? _password;
     public string? Password
     {
         get => _password;
-        set => SetField(ref _password, value);
+        set => this.RaiseAndSetIfChanged(ref _password, value);
     }
 
     public ObservableCollection<Account> Accounts { get; } = [];
@@ -49,7 +50,7 @@ public class MainWindowViewModels : ViewModelBase
         get => _selectedAccount;
         set
         {
-            if (!SetField(ref _selectedAccount, value)) return;
+            this.RaiseAndSetIfChanged(ref _selectedAccount, value);
             
             Id = value?.Id;
             FirstName = value?.FirstName;

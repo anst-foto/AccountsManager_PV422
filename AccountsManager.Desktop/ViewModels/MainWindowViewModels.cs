@@ -2,66 +2,38 @@
 using AccountsManager.Core;
 using AccountsManager.Models;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace AccountsManager.Desktop.ViewModels;
 
 public class MainWindowViewModels : ViewModelBase
 {
-    private int? _id;
-    public int? Id
-    {
-        get => _id;
-        set => this.RaiseAndSetIfChanged(ref _id, value);
-    }
+    [Reactive] public int? Id { get; set; }
     
-    private string? _firstName;
-    public string? FirstName
-    {
-        get => _firstName;
-        set => this.RaiseAndSetIfChanged(ref _firstName, value);
-    }
+    [Reactive] public string? FirstName{ get; set; }
     
-    private string? _lastName;
-    public string? LastName
-    {
-        get => _lastName;
-        set => this.RaiseAndSetIfChanged(ref _lastName, value);
-    }
+    [Reactive] public string? LastName{ get; set; }
     
-    private string? _login;
-    public string? Login
-    {
-        get => _login;
-        set => this.RaiseAndSetIfChanged(ref _login, value);
-    }
+    [Reactive] public string? Login{ get; set; }
     
-    private string? _password;
-    public string? Password
-    {
-        get => _password;
-        set => this.RaiseAndSetIfChanged(ref _password, value);
-    }
+    [Reactive] public string? Password{ get; set; }
 
     public ObservableCollection<Account> Accounts { get; } = [];
     
-    private Account? _selectedAccount;
-    public Account? SelectedAccount
-    {
-        get => _selectedAccount;
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _selectedAccount, value);
-            
-            Id = value?.Id;
-            FirstName = value?.FirstName;
-            LastName = value?.LastName;
-            Login = value?.Login;
-            Password = value?.Password;
-        }
-    }
+    [Reactive] public Account? SelectedAccount{ get; set; }
 
     public MainWindowViewModels()
     {
+        this.WhenAnyValue(vm => vm.SelectedAccount)
+            .Subscribe(a =>
+            {
+                Id = a?.Id;
+                FirstName = a?.FirstName;
+                LastName = a?.LastName;
+                Login = a?.Login;
+                Password = a?.Password;
+            });
+        
         var connectionString = DbConfig.GetConnectionString("db_config.json");
         var service = new Service(connectionString);
         var accounts = service.GetAllAccounts();

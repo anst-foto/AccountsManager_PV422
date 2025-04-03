@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
       <PackageReference Include="ReactiveUI.WPF" Version="20.2.45" />
     </ItemGroup>
 

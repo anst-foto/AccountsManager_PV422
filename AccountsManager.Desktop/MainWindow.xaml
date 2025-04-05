@@ -48,30 +48,33 @@
                     Grid.Column="1">
             <StackPanel Orientation="Vertical">
                 <c:InputComponent LabelContent="ID"
-                                  InputText="{Binding Id}"
+                                  InputText="{Binding Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="True"/>
                 <c:InputComponent LabelContent="Фамилия"
-                                  InputText="{Binding LastName}"
+                                  InputText="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="False"/>
                 <c:InputComponent LabelContent="Имя"
-                                  InputText="{Binding FirstName}"
+                                  InputText="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="False"/>
                 <c:InputComponent LabelContent="Логин"
-                                  InputText="{Binding Login}"
+                                  InputText="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="False"/>
                 <c:InputComponent LabelContent="Пароль"
-                                  InputText="{Binding Password}"
+                                  InputText="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                   IsReadOnly="False"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <Button Content="Сохранить"
-                        Style="{StaticResource ButtonSaveStyle}"/>
+                        Style="{StaticResource ButtonSaveStyle}"
+                        Command="{Binding CommandSave}"/>
                 <Button Content="Удалить"
-                        Style="{StaticResource ButtonDeleteStyle}"/>
+                        Style="{StaticResource ButtonDeleteStyle}"
+                        Command="{Binding CommandDelete}"/>
                 <Button Content="Очистить"
-                        Style="{StaticResource ButtonClearStyle}"/>
+                        Style="{StaticResource ButtonClearStyle}"
+                        Command="{Binding CommandClear}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
